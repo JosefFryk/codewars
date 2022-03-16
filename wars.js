@@ -153,3 +153,28 @@ function findShort(s){
 
 // clever solution -> 
 const findOdd = (xs) => xs.reduce((a, b) => a ^ b);
+
+
+// Which are in?
+// Given two arrays of strings a1 and a2 return a sorted array r in lexicographical order of the strings of a1 which are substrings of strings of a2.
+
+function inArray(array1,array2){
+  let result = [];
+  outer :for ( let i = 0; i < array1.length; i ++){
+    for ( let j = 0; j < array2.length; j ++){  
+      if ( array2[j].includes(array1[i])) {   
+        result.push(array1[i])
+        continue outer;   // will skip the remaining statements of the nested loop and start the next iteration of the loop that is labelled as outer.
+      }
+     }
+   }
+   return result.sort()
+}
+
+// easier sollution
+function inArray(array1,array2){
+  return array1
+    .filter(a1 => array2.find(a2 => a2.match(a1)))
+    .sort()
+}
+
