@@ -117,3 +117,39 @@ function findShort(s){
   return s.trim().split(" ").sort((a,b) =>
     a.length - b.length)[0].length
   }
+
+//Sum of Digits / Digital Root
+  // Given n, take the sum of the digits of n. If that value has more than one digit, continue reducing in this way until a single-digit number is produced.
+  //  The input will be a non-negative integer.
+ 
+ function digital_root(n) {
+    if (n < 10)                     // if bez curly braces, kvuli vice return, kdyz je prvni  false prejde na dalsi
+      return n;
+      return digital_root(          //vrati zpet na zacatek funkce
+      n.toString().split('').reduce((a,b) => {     //array -> sum
+        return a + +b;                // +b to number, Unární operace stejne jako -x
+   },0))
+  }
+  
+
+
+// Find the odd int
+//   Given an array of integers, find the one that appears an odd number of times.
+//   There will always be only one integer that appears an odd number of times. 
+  function findOdd(A) {
+    let  oddCount = 0
+    let newArr = A.sort((a,b) => a - b )
+    for (let i = 0; i < A.length; i++) {
+      for (let p = 0; p < A.length; p++){
+        if (newArr[i] == newArr[p]){
+         oddCount++                           // double loop array aby jsme ziskali true za kazdy int dale porovname pocet trues
+      } 
+    }
+    if (oddCount % 2 !== 0) { //porovna pocet trues z loops
+        return newArr[i];
+      }
+    }
+  }
+
+// clever solution -> 
+const findOdd = (xs) => xs.reduce((a, b) => a ^ b);
