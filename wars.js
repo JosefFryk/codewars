@@ -178,3 +178,39 @@ function inArray(array1,array2){
     .sort()
 }
 
+
+ // Find The Parity Outlier
+//   You are given an array (which will have a length of at least 3, but could be very large) containing integers.
+//    The array is either entirely comprised of odd integers or entirely comprised of even integers except for a single integer N.
+//    Write a method that takes the array as an argument and returns this "outlier" N.
+
+function findOutlier(int){                          // filter odd a even to array
+  let even = int.filter(a => a % 2 === 0);
+  let odd = int.filter(a  => a % 2 !== 0);
+  return even.length === 1 ? even[0] : odd[0];   // kdyz je even array = 1 return prvni element z even /!= odd prvni element
+}
+
+// Sort the odd
+// You will be given an array of numbers. You have to sort the odd numbers in ascending order while leaving the even numbers at their original positions.
+function sortArray(array) {
+  const oddArray = [];
+  const evenArray = [];
+  const count = [];
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] % 2 === 0) {
+       evenArray.push(array[i])
+    }else {
+       oddArray.push(array[i]);
+    }
+  }
+  oddArray.sort((a,b) => a-b)
+  
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] % 2 === 0){
+      count.push(evenArray.shift())
+    }else {
+      count.push(oddArray.shift())
+    }
+  }
+  return count
+}
