@@ -214,3 +214,47 @@ function sortArray(array) {
   }
   return count
 }
+
+// Convert string to camel case
+// Complete the method/function so that it converts dash/underscore delimited words into camel casing. 
+// The first word within the output should be capitalized only if the original word was capitalized (known as Upper Camel Case, also often referred to as Pascal case).
+
+// Examples
+// "the-stealth-warrior" gets converted to "theStealthWarrior"
+// "The_Stealth_Warrior" gets converted to "TheStealthWarrior"
+
+function toCamelCase(str){
+  let regExp =/[-_]\w/ig;
+ // odstranit znaky, funkce na vyhledani druhyho slova to uppercase
+ return str.replace(regExp, function(firstLetter){
+   return firstLetter.charAt(1).toUpperCase()
+ })
+
+}
+
+// Create Phone Number
+// Write a function that accepts an array of 10 integers (between 0 and 9), that returns a string of those numbers in the form of a phone number.
+// createPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]) // => returns "(123) 456-7890"
+
+function createPhoneNumber(arr) {
+  let format = '(xxx) xxx-xxxx'; //variable pro format
+
+  arr.forEach(item => {                                           // loop pro kazdy x cislo
+      format = format.replace('x', item);
+  });
+
+  return format;
+}
+
+// Count the number of Duplicates
+// Write a function that will return the count of distinct case-insensitive alphabetic characters and numeric digits that occur more than once in the input string. 
+// The input string can be assumed to contain only alphabets (both uppercase and lowercase) and numeric digits.
+
+
+
+function duplicateCount(text){
+  return (text.toLowerCase().split("").sort().join('').match(/([^])\1+/g) || []).length
+   }
+ 
+   ///vsechno na lower, split,seradit,spojit, match regex nebo array vse do zavorky a .length kvuli count
+     
