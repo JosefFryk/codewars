@@ -257,4 +257,49 @@ function duplicateCount(text){
    }
  
    ///vsechno na lower, split,seradit,spojit, match regex nebo array vse do zavorky a .length kvuli count
-     
+
+
+ 
+//  Write a function dirReduc which will take an array of strings and returns an array of strings with the needless directions removed (W<->E or S<->N side by side).
+
+//  The Haskell version takes a list of directions with data Direction = North | East | West | South.
+//  The Clojure version returns nil when the path is reduced to nothing.
+//  The Rust version takes a slice of enum Direction {North, East, West, South}.
+
+function dirReduc(arr){
+  let str = arr.join("")
+  let pattern = /NORTHSOUTH|EASTWEST|SOUTHNORTH|WESTEAST/g
+  while(pattern.test(str)) {
+      str = str.replace(pattern, '')
+  }
+
+  return str.match(/(NORTH|SOUTH|EAST|WEST)/g) || []
+}
+
+
+
+// Highest Scoring Word
+// Given a string of words, you need to find the highest scoring word.
+// Each letter of a word scores points according to its position in the alphabet: a = 1, b = 2, c = 3 etc.
+// You need to return the highest scoring word as a string.
+// If two words score the same, return the word that appears earliest in the original string.
+// All letters will be lowercase and all inputs will be valid.
+
+function high(x){
+  let highScore = 0;
+  let word = '';
+  let wordArr = x.split(' ');
+  for (let i = 0; i < wordArr.length; i++) {
+  let wordScore = 0;
+    let iword = wordArr[i];
+    for (let j = 0; j < iword.length; j++) {
+      wordScore = wordScore + (iword.charCodeAt(j)-96);
+      
+    }
+    if (wordScore > highScore){
+       highScore = wordScore;
+       word = iword;
+    }
+  }
+  return word;
+}
