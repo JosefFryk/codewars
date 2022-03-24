@@ -339,3 +339,52 @@ function duplicateEncode(word){
   }
   return resultString;
 }
+
+// A man has a rather old car being worth $2000. He saw a secondhand car being worth $8000. He wants to keep his old car until he can buy the secondhand one.
+// He thinks he can save $1000 each month but the prices of his old car and of the new one decrease of 1.5 percent per month. 
+//Furthermore the percent of loss increases by a fixed 0.5 percent at the end of every two months.
+// Can you help him? Our man finds it difficult to make all these calculations.
+// How many months will it take him to save up enough money to buy the car he wants, and how much money will he have left over?
+function nbMonths(startPriceOld, startPriceNew, savingperMonth, percentLossByMonth) {
+
+  if (startPriceOld >= startPriceNew) {
+    return [0, Math.floor(startPriceOld - startPriceNew)];
+  }
+  
+  let months = 0;
+  let totalSaving = 0;
+  let depreciatedPriceNew = startPriceNew;
+  let depreciatedPriceOld = startPriceOld;
+  let lossPercentage = percentLossByMonth; 
+  while ((totalSaving + depreciatedPriceOld) < depreciatedPriceNew) {
+    months += 1;
+    if (months % 2 === 0) {
+      lossPercentage += 0.5; 
+    }
+    totalSaving += savingperMonth;
+    depreciatedPriceOld -= depreciatedPriceOld * (lossPercentage / 100);
+    depreciatedPriceNew -= depreciatedPriceNew * (lossPercentage / 100);
+  }
+  return [months, Math.round(totalSaving + depreciatedPriceOld - depreciatedPriceNew)];
+}
+
+
+// Build Tower
+// Build a pyramid-shaped tower given a positive integer number of floors. A tower block is represented with "*" character.
+// [
+//   "     *     ", 
+//   "    ***    ", 
+//   "   *****   ", 
+//   "  *******  ", 
+//   " ********* ", 
+//   "***********"
+// ]
+function towerBuilder(floors){
+  let space,star, tower = [];
+  for(i = 1; i <= floors; i++){
+    space = " ".repeat(floors - i);
+    star  = "*".repeat((2*i) - 1);
+    tower.push(`${space}${star}${space}`);
+  }
+  return tower;
+}
