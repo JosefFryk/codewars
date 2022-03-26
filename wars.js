@@ -388,3 +388,29 @@ function towerBuilder(floors){
   }
   return tower;
 }
+
+// Are they the "same"?
+// Given two arrays a and b write a function comp(a, b) (orcompSame(a, b)) that checks whether the two arrays have the "same" elements,
+//  with the same multiplicities (the multiplicity of a member is the number of times it appears). 
+//  "Same" means, here, that the elements in b are the elements in a squared, regardless of the order.
+
+// Examples
+// Valid arrays
+// a = [121, 144, 19, 161, 19, 144, 19, 11]  
+// b = [121, 14641, 20736, 361, 25921, 361, 20736, 361]
+const comp = (a1, a2) => {
+  if (!a1 || !a2 || a1.length !== a2.length) return false;
+  return a1.map(x => x * x).sort().toString() === a2.sort().toString();
+}
+
+// Given a list and a number, create a new list that contains each number of lst at most N times without reordering.
+//  For example if the input number is 2, and the input list is [1,2,3,1,2,1,2,3], you take [1,2,3,1,2],
+//   drop the next [1,2] since this would lead to 1 and 2 being in the result 3 times, and then take 3, which leads to [1,2,3,1,2,3]. With list [20,37,20,21] and number 1, 
+//   the result would be [20,37,21].
+function deleteNth(arr,x) {
+  var cache = {};
+  return arr.filter(function(n) {
+    cache[n] = (cache[n]||0) + 1;
+    return cache[n] <= x;
+  });
+}
