@@ -414,3 +414,64 @@ function deleteNth(arr,x) {
     return cache[n] <= x;
   });
 }
+
+
+
+// Description
+// This kata is designed to test your ability to extend the functionality of built-in ruby classes. In this case, we want you to extend the built-in Array class with the following methods: square(), cube(), average(), sum(), even() and odd().
+
+// Explanation:
+
+// square() must return a copy of the array, containing all values squared, the original array must not be changed
+// cube() must return a copy of the array, containing all values cubed, the original array must not be changed
+// average() must return the average of all array values, average() on an empty array must return NaN
+// sum() must return the sum of all array values
+// even() must return an array of all even numbers, the original array must not be changed
+// odd() must return an array of all odd numbers, the original array must not be changed
+Array.prototype.square = function(){
+  return this.map(a => Math.pow(a, 2));
+}
+
+Array.prototype.cube = function(){
+  return this.map(a => Math.pow(a, 3));
+}
+
+Array.prototype.sum = function(){
+  return this.reduce((a, b) => a + b, 0);
+}
+
+Array.prototype.average = function(){
+  return this.sum() / this.length;
+}
+
+Array.prototype.even = function(){
+  return this.filter(a => !(a % 2));
+}
+
+Array.prototype.odd = function(){
+  return this.filter(a => !!(a % 2));
+}
+
+// A child is playing with a ball on the nth floor of a tall building. The height of this floor, h, is known.
+// He drops the ball out of the window. The ball bounces (for example), to two-thirds of its height (a bounce of 0.66).
+// His mother looks out of a window 1.5 meters from the ground.
+// How many times will the mother see the ball pass in front of her window (including when it's falling and bouncing?
+// Three conditions must be met for a valid experiment:
+// Float parameter "h" in meters must be greater than 0
+// Float parameter "bounce" must be greater than 0 and less than 1
+// Float parameter "window" must be less than h.
+// If all three conditions above are fulfilled, return a positive integer, otherwise return -1.
+
+function bouncingBall(h,  bounce,  window) {
+  if (h>0 && bounce<1 && bounce > 0 && window < h){
+    let count = 1
+    h = h*bounce
+    while ( h > window){
+      count += 2
+      h = h * bounce
+      }
+  return count
+  }else {
+    return -1
+  }
+}
