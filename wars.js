@@ -551,3 +551,37 @@ const variance = (town, string) => {
   if (!cityRainfallsMap[town] || cityRainfallsMap[town].length < 1) return -1
   return calcVariance(cityRainfallsMap[town])
 }
+
+
+// Implement a function that adds two numbers together and returns their sum in binary. The conversion can be done before, or after the addition.
+// The binary number returned should be a string.
+// Examples:(Input1, Input2 --> Output (explanation)))
+// 1, 1 --> "10" (1 + 1 = 2 in decimal or 10 in binary)
+// 5, 9 --> "1110" (5 + 9 = 14 in decimal or 1110 in binary)
+
+function addBinary(a,b){
+  return (a+b).toString(2) //.toString(2) makes number binary
+}
+
+
+// Complementary DNA
+// In DNA strings, symbols "A" and "T" are complements of each other, as "C" and "G".
+//  You function receives one side of the DNA (string, except for Haskell); you need to return the other complementary side.
+//  DNA strand is never empty or there is no DNA at all (again, except for Haskell).
+// More similar exercise are found here: http://rosalind.info/problems/list-view/ (source)
+// Example: (input --> output)
+// "ATTGC" --> "TAACG"
+// "GTAT" --> "CATA"
+// dnaStrand []        `shouldBe` []
+// dnaStrand [A,T,G,C] `shouldBe` [T,A,C,G]
+// dnaStrand [G,T,A,T] `shouldBe` [C,A,T,A]
+// dnaStrand [A,A,A,A] `shouldBe` [T,T,T,T]
+
+function DNAStrand(dna) {
+  let letters = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C'};  
+  let arr = [];
+  for (let i=0; i < dna.length; i++) {
+      arr[i] = letters[dna[i]];
+  }
+  return arr.join('');
+}
